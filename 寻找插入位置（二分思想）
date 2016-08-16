@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            int n=sc.nextInt();
+            int[] A=new int[n];
+            for(int i=0;i<n;i++){
+                A[i]=sc.nextInt();
+            }
+            int target=sc.nextInt();
+            int result=binsearch(A,-1,n,target);
+            System.out.println(result);
+        }
+        sc.close();  
+    }
+    public static int binsearch(int[] a,int start,int end,int k){
+        if(a==null || a.length==0){
+            return 0;
+        }
+        while(start+1<end){
+            int mid=(start+end)/2;
+            if(k>a[mid]){
+                start=mid;
+            }
+            else{
+                end=mid;
+            }
+        }
+        return start+1;
+    }
+}
