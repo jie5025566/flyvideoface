@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            double x=sc.nextDouble();
+            int n=sc.nextInt();
+            double result=Pow(x,n);
+            System.out.println(String.format("%.5f",result));
+        }
+        sc.close();  
+    }
+    public static double Pow(double x,int n){
+        if(n==0){
+            return 1;
+        }
+        if(x==0)
+            return 0;
+        boolean flag=true;
+        if(n<0){
+           flag=false;
+            n=-n;
+        }      
+        if(n%2!=0){
+            if(flag)
+                return x*Pow(x*x,n/2);
+            else
+                return 1.0/(x*Pow(x*x,n/2));
+        }
+        if(flag)
+            return Pow(x*x,n/2);  
+        else
+            return 1.0/Pow(x*x,n/2);
+    }
+}
