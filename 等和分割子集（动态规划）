@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            int n=sc.nextInt();
+            int sum=(1+n)*n;
+            if(sum%4!=0){
+                System.out.println(0);
+            }
+            else{
+                long result=subs(n,sum/4);
+                System.out.println(result);
+            }
+        }
+        sc.close();
+    }
+    public static long subs(int n,int sum){
+        long[] dp=new long[sum+1];
+        dp[0]=1;
+        for(int i=1;i<=n;i++){
+            for(int j=sum;j>=i;j--){
+                dp[j]+=dp[j-i];
+            }
+        }
+        return dp[sum]/2;
+    }
+}
