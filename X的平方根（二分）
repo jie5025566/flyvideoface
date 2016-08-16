@@ -1,0 +1,33 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            int x=sc.nextInt();
+            int result=sqrt(x);
+            System.out.println(result);
+        }
+        sc.close();  
+    }
+    public static int sqrt(int x){
+        int from=0;
+        int end=(x+1)/2;
+        while(from<end){
+            int mid=(from+end)/2;
+            if(x==mid*mid){
+                return mid;
+            }
+            else if(x<mid*mid){
+                end=mid-1;
+            }
+            else{
+                from=mid+1;
+            }
+        }
+        if(end*end>x){
+            return end-1;
+        }
+        return end;
+        
+    }
+}
