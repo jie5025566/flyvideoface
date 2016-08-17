@@ -1,0 +1,32 @@
+import java.util.Scanner;
+import java.math.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            int d=sc.nextInt();
+            int v=sc.nextInt();
+            int result=divide(d,v);
+            System.out.println(result);
+        }
+        sc.close();  
+    }
+   public static int divide(int dividend, int divisor)   
+    {  
+        long a = dividend;  
+        long b = divisor;  
+        a = Math.abs(a);
+       b = Math.abs(b);  
+        int res = 0;  
+        while (a>=b)  
+        {  
+            long t = b;  
+            for (int i = 1; a >= t; i <<= 1, t <<= 1)  
+            {  
+                a -= t;  
+                res += i;  
+            }  
+        }  
+        return ((dividend<0)^(divisor<0))? -res:res;  
+    }  
+}
