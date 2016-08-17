@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            double X=sc.nextInt();
+            double e=10e-5;
+            double result=pow(X,e);
+            System.out.println(String.format("%.3f", result));
+        }
+        sc.close();  
+    }
+    public static double pow(double x,double e){
+        double y;
+        double s;
+        double a=x;
+        do{
+            y=(x+a/x)/2.0;
+            s=Math.abs((y-x)/x);
+            x=y;
+        }while(s>e);
+        return x;
+    }
+}
