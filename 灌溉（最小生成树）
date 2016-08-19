@@ -1,0 +1,50 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class Main{
+    private static int[][] arcs;
+    private static int[] dist;
+    private static final int INF=Integer.MAX_VALUE;
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            int N=sc.nextInt();
+            arcs=new int[N][N];
+            dist=new int[N];
+            Arrays.fill(dist,INF);
+            for(int i=0;i<N;i++){
+                for(int j=0;j<N;j++){
+                    arcs[i][j]=sc.nextInt();
+                }
+            }
+            
+            int result=prim(N,arcs,dist);
+            System.out.println(result);
+        }
+        sc.close();
+    }
+    public static int prim(int n,int[][] arcs,int[] dist){
+        
+        dist[0]=0;
+        int count=1,res=0;
+        int pos=0,next_pos=0;
+        int mid=0;
+        while(count<n){  
+            mid=INF;
+            for(int i=0;i<n;i++){
+            	if(dist[i]>0){
+            		dist[i]=Math.min(dist[i],arcs[pos][i]);
+            		if(mid>dist[i]){
+            			mid=dist[i];
+            			next_pos=i;
+            		}
+            	}
+            }
+            res+=mid;
+            pos=next_pos;
+            dist[pos]=0;
+            count++;
+        }
+        return res;
+
+    }
+}
